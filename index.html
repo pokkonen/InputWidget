@@ -7,14 +7,16 @@
     </head>
     <body>
       <div>
-        <h4>TimePeriod search</h4>
-        <b>Start date&time</b>
-        <input type="datetime-local" id="startDate"></input>
-        <b>End date&time</b>
-        <input type="datetime-local" id="endDate"></input>
+        <h4 id="headTimePer">TimePeriod search</h4>
+        <b>Start date&time</b><br />
+        <input type="datetime-local" id="startDate"></input><br />
+        <b>End date&time</b><br />
+        <input type="datetime-local" id="endDate"></input><br />
+        <button id="btnTimePer">Use Time Per</button>
 
-        <h5>LastN search</h5>
-        <input type="number" id="lastN"></input>
+        <h4 id="headLastN">LastN search</h4>
+        <input type="number" id="lastN" min=1 max=999></input><br />
+        <button id="btnLastN">Use LastN</button>
       </div>
     </body>
 </html>

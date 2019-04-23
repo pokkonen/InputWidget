@@ -1,19 +1,31 @@
 "use strict"
 
-function init() {
+window.onload=function() {
+    let startDate = document.getElementById("startDate");
+    let endDate = document.getElementById("endDate");
+    let lastN = document.getElementById("lastN");
+    let date1, date2, nValue;
 
-    console.log(a)
-    console.log(b)
-    console.log(c)
+    startDate.addEventListener("change", function() {date1 = startDate.value})
+    endDate.addEventListener("change", function() {date2 = endDate.value})
+    lastN.addEventListener("change", function() {nValue = lastN.value})
+
+    document.querySelector("#btnTimePer").addEventListener("click", function() {
+        let datesList = [];
+        datesList.push(date1)
+        datesList.push(date2)
+
+        document.getElementById("headTimePer").style.color = "green";
+        document.getElementById("headLastN").style.color = "black";
+
+        MashupPlatform.wiring.pushEvent("Dates", datesList);
+    })
+
+    document.querySelector("#btnLastN").addEventListener("click", function() {
+        document.getElementById("headLastN").style.color = "green";
+        document.getElementById("headTimePer").style.color = "black";
+
+        MashupPlatform.wiring.pushEvent("nValue", nValue);
+    })
+
 }
-
-let startDate = document.getElementById("startDate");
-// Ei toimi?
-
-startDate.addEventListener("change", function() {console.log(startDate.value)})
-
-// let a = document.querySelector("startDate").addEventListener("change", function() {console.log()})
-// let b = document.getElementById("endDate").value;
-// let c = document.getElementById("lastN").value;
-
-init()
