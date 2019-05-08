@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="whatever" name="InputWidget" version="0.1.9">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="whatever" name="InputWidget" version="0.2.4">
     <details>
         <title>Input Widget</title>
         <homepage>https://github.com/wirecloud-fiware/quick-start-development-tutorial</homepage>
@@ -22,6 +22,10 @@
         <outputendpoint
                 name="nValue"
                 label="nValue"
+                type="text"/>
+        <outputendpoint
+                name="Minutes"
+                label="Minutes"
                 type="text"/>
     </wiring>
 
