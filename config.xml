@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="whatever" name="InputWidget" version="0.3.1">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="whatever" name="InputWidget" version="0.3.8">
     <details>
         <title>Input Widget</title>
         <homepage>https://github.com/wirecloud-fiware/quick-start-development-tutorial</homepage>
@@ -15,6 +15,14 @@
     </details>
 
     <wiring>
+        <outputendpoint
+                name="AggrMethod"
+                label="AggrMethod"
+                type="text"/>
+        <outputendpoint
+                name="AggrPeriod"
+                label="AggrPeriod"
+                type="text"/>
         <outputendpoint
                 name="Dates"
                 label="Dates"
