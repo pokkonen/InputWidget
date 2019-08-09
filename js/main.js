@@ -4,117 +4,75 @@ window.onload=function() {
     let startDate = document.getElementById("startDate");
     let endDate = document.getElementById("endDate");
     let lastN = document.getElementById("lastN");
-    let date1, date2, nValue;
+    let date1, date2, nValue, aggrMethod, aggrPeriod, string;
 
     startDate.addEventListener("change", function() {date1 = startDate.value});
     endDate.addEventListener("change", function() {date2 = endDate.value});
     lastN.addEventListener("change", function() {nValue = lastN.value});
 
-    document.getElementById("btnMethodMax").style.color = "black";
-    document.getElementById("btnMethodMin").style.color = "black";
-    // document.getElementById("btnTimeSec").style.color = "black";
-    document.getElementById("btnTimeMin").style.color = "black";
-    document.getElementById("btnTimeHour").style.color = "black";
-    document.getElementById("btnTimeDay").style.color = "black";
-    document.getElementById("btnTimeMonth").style.color = "black";
-    document.getElementById("headTimePer").style.color = "black";
-    document.getElementById("headLastN").style.color = "black";
-    document.getElementById("btn30").style.color = "black";
-    document.getElementById("btn20").style.color = "black";
-    document.getElementById("btn10").style.color = "black";
-
     // Method
     document.querySelector("#btnMethodMax").addEventListener("click", function() {
         document.getElementById("btnMethodMax").style.color = "green";
         document.getElementById("btnMethodMin").style.color = "black";
-        MashupPlatform.wiring.pushEvent("AggrMethod", "max");
+        aggrMethod = "max";
     })
     document.querySelector("#btnMethodMin").addEventListener("click", function() {
         document.getElementById("btnMethodMax").style.color = "black";
         document.getElementById("btnMethodMin").style.color = "green";
-        MashupPlatform.wiring.pushEvent("AggrMethod", "min");
+        aggrMethod = "min";
     })
 
-    // TimePer
-    // document.querySelector("#btnTimeSec").addEventListener("click", function() {
-    //     document.getElementById("btnTimeSec").style.color = "green";
-    //     document.getElementById("btnTimeMin").style.color = "black";
-    //     document.getElementById("btnTimeHour").style.color = "black";
-    //     document.getElementById("btnTimeDay").style.color = "black";
-    //     document.getElementById("btnTimeMonth").style.color = "black";
-    //     MashupPlatform.wiring.pushEvent("AggrPeriod", "second");
-    // })
+    // Time period
     document.querySelector("#btnTimeMin").addEventListener("click", function() {
-        // document.getElementById("btnTimeSec").style.color = "black";
         document.getElementById("btnTimeMin").style.color = "green";
         document.getElementById("btnTimeHour").style.color = "black";
         document.getElementById("btnTimeDay").style.color = "black";
         document.getElementById("btnTimeMonth").style.color = "black";
-        MashupPlatform.wiring.pushEvent("AggrPeriod", "minute");
+        aggrPeriod = "minute";
     })
     document.querySelector("#btnTimeHour").addEventListener("click", function() {
-        // document.getElementById("btnTimeSec").style.color = "black";
         document.getElementById("btnTimeMin").style.color = "black";
         document.getElementById("btnTimeHour").style.color = "green";
         document.getElementById("btnTimeDay").style.color = "black";
         document.getElementById("btnTimeMonth").style.color = "black";
-        MashupPlatform.wiring.pushEvent("AggrPeriod", "hour");
+        aggrPeriod = "hour";
     })
     document.querySelector("#btnTimeDay").addEventListener("click", function() {
-        // document.getElementById("btnTimeSec").style.color = "black";
         document.getElementById("btnTimeMin").style.color = "black";
         document.getElementById("btnTimeHour").style.color = "black";
         document.getElementById("btnTimeDay").style.color = "green";
         document.getElementById("btnTimeMonth").style.color = "black";
-        MashupPlatform.wiring.pushEvent("AggrPeriod", "day");
+        aggrPeriod = "day";
     })
     document.querySelector("#btnTimeMonth").addEventListener("click", function() {
-        // document.getElementById("btnTimeSec").style.color = "black";
         document.getElementById("btnTimeMin").style.color = "black";
         document.getElementById("btnTimeHour").style.color = "black";
         document.getElementById("btnTimeDay").style.color = "black";
         document.getElementById("btnTimeMonth").style.color = "green";
-        MashupPlatform.wiring.pushEvent("AggrPeriod", "month");
+        aggrPeriod = "month";
     })
 
-    // Use Time Per
+    // Choose search method
     document.querySelector("#btnTimePer").addEventListener("click", function() {
-        let datesList = [];
-        datesList.push(date1);
-        datesList.push(date2);
-
         document.getElementById("headTimePer").style.color = "green";
         document.getElementById("headLastN").style.color = "black";
-        MashupPlatform.wiring.pushEvent("Dates", datesList);
-        MashupPlatform.wiring.pushEvent("nValue", null);
+        document.getElementById("timeperDiv").style.border = "1px ridge green";
+        document.getElementById("lastnDiv").style.border = "";
+
+        string = "?aggrMethod=" + aggrMethod + "&aggrPeriod=" + aggrPeriod;
+		string += "&dateFrom=" + date1 + "&dateTo=" + date2;
+
+		MashupPlatform.wiring.pushEvent("DatesInfo", string);
     })
 
-    // Use LastN
     document.querySelector("#btnLastN").addEventListener("click", function() {
         document.getElementById("headLastN").style.color = "green";
         document.getElementById("headTimePer").style.color = "black";
-        MashupPlatform.wiring.pushEvent("nValue", nValue);
-        MashupPlatform.wiring.pushEvent("Dates", null);
-    })
+        document.getElementById("lastnDiv").style.border = "1px ridge green";
+        document.getElementById("timeperDiv").style.border = "";
 
-    // Minutes around alert
-    document.querySelector("#btn10").addEventListener("click", function() {
-        document.getElementById("btn10").style.color = "green";
-        document.getElementById("btn20").style.color = "black";
-        document.getElementById("btn30").style.color = "black";
-        MashupPlatform.wiring.pushEvent("Minutes", "10");
-    })
-    document.querySelector("#btn20").addEventListener("click", function() {
-        document.getElementById("btn20").style.color = "green";
-        document.getElementById("btn10").style.color = "black";
-        document.getElementById("btn30").style.color = "black";
-        MashupPlatform.wiring.pushEvent("Minutes", "20");
-    })
-    document.querySelector("#btn30").addEventListener("click", function() {
-        document.getElementById("btn30").style.color = "green";
-        document.getElementById("btn20").style.color = "black";
-        document.getElementById("btn10").style.color = "black";
-        MashupPlatform.wiring.pushEvent("Minutes", "30");
-    })
+		string = "?lastN=" + nValue;
 
+        MashupPlatform.wiring.pushEvent("DatesInfo", string);
+    })
 }
